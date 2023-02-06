@@ -1,5 +1,12 @@
-FROM alpine:latest
-RUN apk update && apk add bash
+FROM python:3.8
 
-WORKDIR /app
-COPY repeat.sh /app
+LABEL maintainer="hj146@duke.edu"
+
+COPY . /src
+
+WORKDIR /src
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["python"]
+CMD ["app.py"]
